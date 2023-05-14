@@ -28,7 +28,7 @@ import WalletNotConnected from './WalletNotConnected';
 
 const Layout = ({ children }: PropsWithChildren) => {
   const { address, status } = useAccount();
-
+  const [connected, setConnected] = useState<boolean>(false);
   const { chain } = useNetwork();
 
   const { addNotification } = useNotification();
@@ -122,6 +122,24 @@ const Layout = ({ children }: PropsWithChildren) => {
   };
 
   useEffect(() => {
+    // if (!connected) {
+    //   return;
+    // }
+    const handler = async () => {
+      try {
+        const res = await fetch('/api/me');
+        const json = await res.json();
+        setState((x) => ({ ...x, loggedInAddress: json.address }));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    handler();
+    window.addEventListener('focus', handler);
+    return () => window.removeEventListener('focus', handler);
+  }, [connected]);
+
+  useEffect(() => {
     const connecterHandler = async () => {
       try {
         await connect({
@@ -132,25 +150,15 @@ const Layout = ({ children }: PropsWithChildren) => {
         });
       } catch (error) {}
     };
-
-    const handler = async () => {
-      try {
-        const res = await fetch('/api/me');
-        const json = await res.json();
-        setState((x) => ({ ...x, loggedInAddress: json.address }));
-      } catch (error) {}
-    };
-
     const fetchData = async () => {
-      await handler();
-      await connecterHandler();
+      try {
+        await connecterHandler();
+        setConnected(true);
+      } catch (error) {
+        setConnected(false);
+      }
     };
-
     fetchData();
-
-    window.addEventListener('focus', handler);
-
-    return () => window.removeEventListener('focus', handler);
   }, []);
 
   let app;
