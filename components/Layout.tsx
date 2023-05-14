@@ -128,7 +128,7 @@ const Layout = ({ children }: PropsWithChildren) => {
           connector: new InjectedConnector(),
         });
         await switchNetwork({
-          chainId: polygonMumbai.id,
+          chainId: polygonMumbai.id || 80001,
         });
       } catch (error) {}
     };
@@ -142,7 +142,8 @@ const Layout = ({ children }: PropsWithChildren) => {
     };
 
     const fetchData = async () => {
-      await Promise.all([handler(), connecterHandler()]);
+      await handler();
+      await connecterHandler();
     };
 
     fetchData();
