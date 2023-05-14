@@ -52,7 +52,7 @@ const updateProfile = async (req: NextApiRequest, res: NextApiResponse) => {
     if (files.image) {
       const { uploadId, bucketId, protocolLink, dynamicLinks } =
         await sphClient.upload(`${files.image.filepath}`, {
-          protocol: ProtocolEnum.IPFS,
+          protocol: ProtocolEnum.FILECOIN,
           name: files.image.newFilename,
           onUploadInitiated: (uploadId) => {},
           onChunkUploaded: (uploadedSize, totalSize) => {
