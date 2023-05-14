@@ -133,7 +133,7 @@ function CreateEvent() {
     setIsLoading(true);
     addNotification({
       status: 'info',
-      title: 'Uploading metadata to ipfs...',
+      title: 'Uploading metadata to filecoin...',
     });
     const formData = new FormData();
     if (file) {
@@ -150,7 +150,7 @@ function CreateEvent() {
       const eventLink = res.data.eventMetaData;
       addNotification({
         status: 'success',
-        title: 'IPFS upload successful. Initiating mint process...',
+        title: 'Filecoin upload successful. Initiating mint process...',
         description: 'Initiating mint process...',
       });
       //web3 stuff from here onwards to create event in blockwave contract

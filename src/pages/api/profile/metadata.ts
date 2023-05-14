@@ -35,7 +35,7 @@ const readForm = (
   });
 };
 
-//method saves image to db after saving to ipgs and then generates nft metadata json on ipfs to return to client for NFT
+//method saves image to db after saving to ipgs and then generates nft metadata json on filecoin to return to client for NFT
 const uploadNFTProfileMetadata = async (
   req: NextApiRequest,
   res: NextApiResponse
@@ -103,7 +103,7 @@ const uploadNFTProfileMetadata = async (
     }
     return res.status(201).json({ postMetaData });
     // setTimeout(() => {
-    //   res.json({ postMetaData: 'simulating ipfs upload' });
+    //   res.json({ postMetaData: 'simulating filecoin upload' });
     // }, 1000); // sleep for 2 seconds
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });

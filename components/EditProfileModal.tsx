@@ -124,7 +124,7 @@ function EditProfile({ isOpen, onClose, user, setUpdate }: any) {
         if (!file) {
           setIsInfo('saving changes...');
         } else {
-          setIsInfo('uploading metadata to ipfs...');
+          setIsInfo('uploading metadata to filecoin...');
         }
         await axios.post('/api/profile/update', formData);
         // reset();
@@ -144,8 +144,8 @@ function EditProfile({ isOpen, onClose, user, setUpdate }: any) {
   };
 
   const nftHandler = async () => {
-    //first upload the image to ipfs & save hash in db
-    //save it as metadata with json and upload the metadata to ipfs and return the link
+    //first upload the image to filecoin & save hash in db
+    //save it as metadata with json and upload the metadata to filecoin and return the link
     onCloseNFT();
     const formData = new FormData();
     if (file) {
@@ -165,7 +165,7 @@ function EditProfile({ isOpen, onClose, user, setUpdate }: any) {
     }
     try {
       setIsLoading(true);
-      setIsInfo('uploading metadata to ipfs...');
+      setIsInfo('uploading metadata to filecoin...');
       const res = await axios.post('/api/profile/metadata', formData);
       const config = await prepareWriteContract({
         address: chainAddresses[chain?.id].ProfileImage,
