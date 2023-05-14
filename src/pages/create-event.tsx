@@ -155,7 +155,7 @@ function CreateEvent() {
       });
       //web3 stuff from here onwards to create event in blockwave contract
       const config = await prepareWriteContract({
-        address: chainAddresses[chain?.id || 5001].TicketFactory,
+        address: chainAddresses[chain?.id].TicketFactory,
         abi: TicketABI.output.abi,
         functionName: 'createTicket',
         args: [
@@ -313,7 +313,7 @@ function CreateEvent() {
                 </Box>
                 <Slider
                   aria-label="zoom"
-                  colorScheme="green"
+                  colorScheme="blue"
                   value={zoom}
                   min={1}
                   max={3}
@@ -331,7 +331,7 @@ function CreateEvent() {
               </>
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="green" onClick={handleCrop}>
+              <Button colorScheme="blue" onClick={handleCrop}>
                 Apply Crop
               </Button>
             </ModalFooter>
@@ -341,7 +341,7 @@ function CreateEvent() {
       <Flex direction="column" mb={16}>
         <Button
           mb={4}
-          colorScheme="green"
+          colorScheme="blue"
           // bg="gray.700"
           onClick={() => router.back()}
           w="fit-content"
@@ -362,7 +362,7 @@ function CreateEvent() {
             Create Your Own Event
           </Text>
           <Box display="flex" alignItems="center" mb={4}>
-            <Text color="green.200" mt={2} mb={4}>
+            <Text color="blue.200" mt={2} mb={4}>
               Please fill in the following fields to create your event as an
               ERC-1155 NFT Token. Mint your NFT using the form below with an
               easy one step process.
@@ -398,7 +398,7 @@ function CreateEvent() {
                         size="lg"
                         mb="4"
                         autoComplete="off"
-                        focusBorderColor="green.200"
+                        focusBorderColor="blue.200"
                         // variant="flushed"
                         placeholder="Enter event name"
                       />
@@ -425,7 +425,7 @@ function CreateEvent() {
                         mb="4"
                         height="fit-content"
                         autoComplete="off"
-                        focusBorderColor="green.400"
+                        focusBorderColor="blue.400"
                         // variant="flushed"
                         placeholder="Enter event description"
                       />
@@ -449,7 +449,7 @@ function CreateEvent() {
                         size="lg"
                         autoComplete="off"
                         mb="4"
-                        focusBorderColor="green.200"
+                        focusBorderColor="blue.200"
                         // variant="flushed"
                         placeholder="Enter total ticket supply"
                       />
@@ -472,7 +472,7 @@ function CreateEvent() {
                         autoComplete="off"
                         size="lg"
                         mb="4"
-                        focusBorderColor="green.200"
+                        focusBorderColor="blue.200"
                         placeholder={`Enter price per ticket in ${chain?.nativeCurrency.symbol}`}
                       />
                       {form.errors.price && form.touched.price && (
@@ -492,7 +492,7 @@ function CreateEvent() {
                       <FormLabel fontSize="lg">
                         Upload Event Cover Image
                       </FormLabel>
-                      <Text color="green.200">
+                      <Text color="blue.200">
                         Event cover image will be displayed to buyers.
                       </Text>
 
@@ -509,7 +509,7 @@ function CreateEvent() {
                             borderStyle={isDragActive ? 'dashed' : 'solid'}
                             borderColor={
                               isDragAccept
-                                ? 'green.400'
+                                ? 'blue.400'
                                 : isDragReject
                                 ? 'red.500'
                                 : 'gray.700'
@@ -546,7 +546,7 @@ function CreateEvent() {
                               display="flex"
                               justifyContent="center"
                               alignItems="center"
-                              color="green.200"
+                              color="blue.200"
                             >
                               <FaImages size={48} />
                             </Box>
@@ -648,7 +648,7 @@ function CreateEvent() {
                 <Box display="flex" justifyContent="flex-end" mt={8}>
                   <Button
                     type="submit"
-                    colorScheme="green"
+                    colorScheme="blue"
                     isLoading={isLoading}
                   >
                     Mint Event

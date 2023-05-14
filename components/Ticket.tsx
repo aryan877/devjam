@@ -77,7 +77,7 @@ function Ticket({ event, index }: { event: any; index: number }) {
   const [balance, setBalance] = useState<any>(0);
 
   const { data: useContractReadEvents } = useContractRead({
-    address: chainAddresses[chain?.id || 5001].TicketFactory,
+    address: chainAddresses[chain?.id].TicketFactory,
     abi: TicketABI.output.abi,
     functionName: 'balanceOf',
     watch: true,
@@ -100,7 +100,7 @@ function Ticket({ event, index }: { event: any; index: number }) {
         _hover={{ boxShadow: 'lg' }}
       >
         <Box
-          bg="purple.500"
+          bg="blue.500"
           py={2}
           px={4}
           borderBottomWidth="1px"

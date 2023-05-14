@@ -74,7 +74,7 @@ function Profile() {
 
   const [events, setEvents] = useState<any>([]);
   const { data: useContractReadEvents, isFetching } = useContractRead({
-    address: chainAddresses[chain?.id || 5001].TicketFactory,
+    address: chainAddresses[chain?.id].TicketFactory,
     abi: TicketABI.output.abi,
     functionName: 'getMyEvents',
     overrides: {
@@ -167,7 +167,7 @@ function Profile() {
       )}
       <Box width="full" mb={16} maxWidth="2xl" p={4}>
         <Button
-          colorScheme="green"
+          colorScheme="blue"
           // bg="gray.700"
           mb={4}
           w="fit-content"
@@ -206,8 +206,8 @@ function Profile() {
                   borderWidth="1px"
                   bg="gray.800"
                   _hover={{ bg: 'gray.800' }}
-                  borderColor="green.200"
-                  color="green.200"
+                  borderColor="blue.200"
+                  color="blue.200"
                   onClick={editProfileOnOpen}
                 >
                   Edit Profile
@@ -220,8 +220,8 @@ function Profile() {
                 borderWidth="1px"
                 bg="gray.800"
                 _hover={{ bg: 'gray.800' }}
-                borderColor="green.200"
-                color="green.200"
+                borderColor="blue.200"
+                color="blue.200"
                 onClick={transferOnOpen}
               >
                 Send {chain?.nativeCurrency.symbol}
@@ -238,7 +238,7 @@ function Profile() {
           onChange={handleTabsChange}
           isFitted
           variant="enclosed"
-          colorScheme="green"
+          colorScheme="blue"
         >
           <TabList my={8}>
             <Tab>Posts</Tab>
@@ -272,7 +272,7 @@ function Profile() {
                       </Text>
                       {slug === address && (
                         <Link href="/">
-                          <Button variant="solid" colorScheme="green">
+                          <Button variant="solid" colorScheme="blue">
                             Create a new post
                           </Button>
                         </Link>

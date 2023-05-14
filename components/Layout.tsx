@@ -10,21 +10,16 @@ import {
   MenuList,
   Text,
 } from '@chakra-ui/react';
-import { disconnect } from '@wagmi/core';
+import { connect, disconnect, switchNetwork } from '@wagmi/core';
+import { InjectedConnector } from '@wagmi/core/connectors/injected';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { PropsWithChildren, useEffect, useState } from 'react';
 import { AiOutlineArrowRight, AiOutlineCaretDown } from 'react-icons/ai';
 import { SiweMessage } from 'siwe';
-import {
-  useAccount,
-  useConnect,
-  useEnsName,
-  useNetwork,
-  useSignMessage,
-} from 'wagmi';
-import { InjectedConnector } from 'wagmi/connectors/injected';
+import { useAccount, useNetwork, useSignMessage } from 'wagmi';
+import { polygonMumbai } from 'wagmi/chains';
 import { useNotification } from '../context/NotificationContext';
 import Loader from './Loader';
 import LoginPrompt from './LoginPrompt';
@@ -33,10 +28,9 @@ import WalletNotConnected from './WalletNotConnected';
 
 const Layout = ({ children }: PropsWithChildren) => {
   const { address, status } = useAccount();
-  const { connect } = useConnect({
-    connector: new InjectedConnector(),
-  });
+
   const { chain } = useNetwork();
+
   const { addNotification } = useNotification();
   const router = useRouter();
 
@@ -75,10 +69,8 @@ const Layout = ({ children }: PropsWithChildren) => {
   const signIn = async () => {
     try {
       if (!address && !chain) return alert('No account');
-
       // set loading to true
       setState((x) => ({ ...x, error: undefined, loading: true }));
-
       const nonceRes = await axios.get('/api/nonce');
       const message = new SiweMessage({
         domain: window.location.host,
@@ -130,16 +122,33 @@ const Layout = ({ children }: PropsWithChildren) => {
   };
 
   useEffect(() => {
-    connect();
+    const connecterHandler = async () => {
+      try {
+        await connect({
+          connector: new InjectedConnector(),
+        });
+        await switchNetwork({
+          chainId: polygonMumbai.id,
+        });
+      } catch (error) {}
+    };
+
     const handler = async () => {
       try {
         const res = await fetch('/api/me');
         const json = await res.json();
         setState((x) => ({ ...x, loggedInAddress: json.address }));
-      } catch (_error) {}
+      } catch (error) {}
     };
-    handler();
+
+    const fetchData = async () => {
+      await Promise.all([handler(), connecterHandler()]);
+    };
+
+    fetchData();
+
     window.addEventListener('focus', handler);
+
     return () => window.removeEventListener('focus', handler);
   }, []);
 
@@ -208,7 +217,7 @@ const Layout = ({ children }: PropsWithChildren) => {
                 <MenuButton
                   as={Button}
                   variant="solid"
-                  colorScheme="green"
+                  colorScheme="blue"
                   rounded="full"
                   mr={3}
                   _hover={{ cursor: 'pointer' }}
@@ -230,7 +239,7 @@ const Layout = ({ children }: PropsWithChildren) => {
                   as={Button}
                   variant="solid"
                   rounded="full"
-                  colorScheme="green"
+                  colorScheme="blue"
                   mr={3}
                   _hover={{ cursor: 'pointer' }}
                   rightIcon={<AiOutlineCaretDown />}
@@ -250,9 +259,17 @@ const Layout = ({ children }: PropsWithChildren) => {
           ) : (
             //if not connected then show button to connect
             <Button
-              onClick={() => connect()}
+              onClick={async () => {
+                try {
+                  await connect({
+                    connector: new InjectedConnector(),
+                  });
+                } catch (error) {
+                  console.error(error);
+                }
+              }}
               variant="solid"
-              colorScheme="green"
+              colorScheme="blue"
               rounded="full"
               mr={3}
             >

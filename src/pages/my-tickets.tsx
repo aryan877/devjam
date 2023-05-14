@@ -31,7 +31,7 @@ function MyTickets() {
   const [events, setEvents] = useState<any>([]);
   const { chain } = useNetwork();
   const { data: useContractReadEvents } = useContractRead({
-    address: chainAddresses[chain?.id || 5001].TicketFactory,
+    address: chainAddresses[chain?.id].TicketFactory,
     abi: TicketABI.output.abi,
     functionName: 'getMyTickets',
     watch: true,
@@ -48,7 +48,7 @@ function MyTickets() {
   return (
     <Box width="full" mb={16} maxWidth="2xl" p={4}>
       <Button
-        colorScheme="green"
+        colorScheme="blue"
         // bg="gray.700"
         mb={4}
         onClick={() => router.back()}
@@ -63,7 +63,7 @@ function MyTickets() {
       <Box
         mb={4}
         color="gray.700"
-        bg="green.200"
+        bg="blue.200"
         borderRadius="md"
         p="4"
         fontWeight="semibold"
@@ -89,7 +89,7 @@ function MyTickets() {
               </Text>
               <Center>
                 <Link href="/events">
-                  <Button variant="solid" colorScheme="green">
+                  <Button variant="solid" colorScheme="blue">
                     Explore events
                   </Button>
                 </Link>

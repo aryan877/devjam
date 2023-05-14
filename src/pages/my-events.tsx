@@ -30,7 +30,7 @@ function MyEvents() {
   const { chain } = useNetwork();
   const [events, setEvents] = useState<any>([]);
   const { data: useContractReadEvents } = useContractRead({
-    address: chainAddresses[chain?.id || 5001].TicketFactory,
+    address: chainAddresses[chain?.id].TicketFactory,
     abi: TicketABI.output.abi,
     functionName: 'getMyEvents',
     watch: true,
@@ -47,7 +47,7 @@ function MyEvents() {
   return (
     <Box width="full" mb={16} maxWidth="2xl" p={4}>
       <Button
-        colorScheme="green"
+        colorScheme="blue"
         // bg="gray.700"
         mb={4}
         onClick={() => router.back()}
@@ -62,7 +62,7 @@ function MyEvents() {
       <Box
         mb={4}
         color="gray.700"
-        bg="green.200"
+        bg="blue.200"
         borderRadius="md"
         p="4"
         fontWeight="semibold"
@@ -87,7 +87,7 @@ function MyEvents() {
             </Text>
             <Center>
               <Link href="/create-event">
-                <Button variant="solid" colorScheme="green">
+                <Button variant="solid" colorScheme="blue">
                   Create a new event
                 </Button>
               </Link>

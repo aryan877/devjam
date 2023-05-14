@@ -3,17 +3,13 @@ import { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { configureChains, createClient, WagmiConfig } from 'wagmi';
 import { polygonMumbai } from 'wagmi/chains';
-import { mantleWadsley, shardeumSphinx } from '../../chain';
 import '../styles/globals.css';
 // import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import Layout from '../../components/Layout';
 import { NotificationProvider } from '../../context/NotificationContext';
 import theme from '../../theme';
-const { provider } = configureChains(
-  [mantleWadsley, shardeumSphinx, polygonMumbai],
-  [publicProvider()]
-);
+const { provider } = configureChains([polygonMumbai], [publicProvider()]);
 // pages/_app.js
 import { Inter } from 'next/font/google';
 

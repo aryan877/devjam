@@ -82,7 +82,7 @@ function TransferModal({ isOpen, onClose, user }: any) {
         <ModalHeader>Transfer Amount</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Text fontWeight="bold" mb={2} color="green.200">
+          <Text fontWeight="bold" mb={2} color="blue.200">
             Transferring amount to {user?.name}
           </Text>
           {address && (
@@ -107,13 +107,13 @@ function TransferModal({ isOpen, onClose, user }: any) {
             _placeholder={{ color: 'gray.400' }}
             placeholder={`Enter amount to send in ${chain?.nativeCurrency.symbol}`}
             style={{ minWidth: 0 }}
-            focusBorderColor="purple.200"
+            focusBorderColor="blue.200"
           />
         </ModalBody>
 
         <ModalFooter flexDirection="column" alignItems="flex-end">
           <Button
-            colorScheme="purple"
+            colorScheme="blue"
             isDisabled={!amount || isError}
             onClick={() => {
               sendTransaction?.();
@@ -131,7 +131,7 @@ function TransferModal({ isOpen, onClose, user }: any) {
             {isFetching ? (
               <Text>Transaction pending....</Text>
             ) : isSuccess ? (
-              <Text color="green.200">
+              <Text color="blue.200">
                 Transaction successful. Amount has been transferred.
               </Text>
             ) : (

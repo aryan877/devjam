@@ -168,7 +168,7 @@ function EditProfile({ isOpen, onClose, user, setUpdate }: any) {
       setIsInfo('uploading metadata to ipfs...');
       const res = await axios.post('/api/profile/metadata', formData);
       const config = await prepareWriteContract({
-        address: chainAddresses[chain?.id || 5001].ProfileImage,
+        address: chainAddresses[chain?.id].ProfileImage,
         abi: ProfileABI.output.abi,
         functionName: 'mint',
         args: [address, res.data.postMetaData],
@@ -247,7 +247,7 @@ function EditProfile({ isOpen, onClose, user, setUpdate }: any) {
               <Button ref={cancelRef} onClick={onCloseNFT}>
                 Cancel
               </Button>
-              <Button colorScheme="purple" onClick={nftHandler} ml={3}>
+              <Button colorScheme="blue" onClick={nftHandler} ml={3}>
                 Yes
               </Button>
             </AlertDialogFooter>
@@ -309,7 +309,7 @@ function EditProfile({ isOpen, onClose, user, setUpdate }: any) {
               </Box>
               <Slider
                 aria-label="zoom"
-                colorScheme="purple"
+                colorScheme="blue"
                 value={zoom}
                 min={1}
                 max={3}
@@ -340,7 +340,7 @@ function EditProfile({ isOpen, onClose, user, setUpdate }: any) {
                   <Input
                     type="text"
                     placeholder="Add a comment..."
-                    focusBorderColor="purple.200"
+                    focusBorderColor="blue.200"
                     value={name}
                     // maxLength={characterLimit}
                     onChange={(e) => {
@@ -382,7 +382,7 @@ function EditProfile({ isOpen, onClose, user, setUpdate }: any) {
                     borderStyle={isDragActive ? 'dashed' : 'solid'}
                     borderColor={
                       isDragAccept
-                        ? 'purple.200'
+                        ? 'blue.200'
                         : isDragReject
                         ? 'red.500'
                         : 'gray.700'
@@ -437,7 +437,7 @@ function EditProfile({ isOpen, onClose, user, setUpdate }: any) {
           {isCropMode ? (
             <>
               <Button
-                colorScheme="purple"
+                colorScheme="blue"
                 onClick={handleCrop}
                 // isLoading={isFetching}
               >
@@ -449,7 +449,7 @@ function EditProfile({ isOpen, onClose, user, setUpdate }: any) {
             <>
               <Flex justifyContent="space-between" width="full">
                 <RadioGroup
-                  colorScheme="purple"
+                  colorScheme="blue"
                   onChange={setValue}
                   value={value}
                 >
@@ -461,7 +461,7 @@ function EditProfile({ isOpen, onClose, user, setUpdate }: any) {
                   </Stack>
                 </RadioGroup>
                 <Button
-                  colorScheme="purple"
+                  colorScheme="blue"
                   onClick={handleSubmit}
                   isLoading={isLoading}
                 >

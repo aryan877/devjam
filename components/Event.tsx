@@ -178,7 +178,7 @@ function Event({ event }: { event: any }) {
   //Modal web3 functions
   const { config, error: usePrepareContractWriteError } =
     usePrepareContractWrite({
-      address: chainAddresses[chain?.id || 5001].TicketFactory,
+      address: chainAddresses[chain?.id].TicketFactory,
       abi: TicketABI.output.abi,
       functionName: 'buyTicket',
       args: [ethers.BigNumber.from(event[0]), numTickets],
@@ -239,7 +239,7 @@ function Event({ event }: { event: any }) {
           <ModalHeader>Buy Tickets</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text fontWeight="bold" color="green.200" mb={4}>
+            <Text fontWeight="bold" color="blue.200" mb={4}>
               Choose the number of tickets you wish to buy
             </Text>
             <HStack spacing="2" mb={4}>
@@ -285,7 +285,7 @@ function Event({ event }: { event: any }) {
             {isFetching ? (
               <Text>Transaction pending....</Text>
             ) : isPurchased && isSuccess ? (
-              <Text color="green.200">
+              <Text color="blue.200">
                 Tickets purchased successfully. Check your tickets in My Tickets
                 tab.
               </Text>
@@ -317,7 +317,7 @@ function Event({ event }: { event: any }) {
 
           <ModalFooter>
             <Button
-              colorScheme="purple"
+              colorScheme="blue"
               onClick={handleSubmit}
               isLoading={isFetching}
               isDisabled={!isEmpty(usePrepareContractWriteError) || !numTickets}
@@ -444,7 +444,7 @@ function Event({ event }: { event: any }) {
                     </HStack>
                     {address !== event.creator && (
                       <Button
-                        colorScheme="purple"
+                        colorScheme="blue"
                         size="md"
                         isDisabled={!(status === SaleStatus.Active)}
                         onClick={onOpen}
@@ -461,7 +461,7 @@ function Event({ event }: { event: any }) {
                     ? 'yellow'
                     : status === SaleStatus.Ended
                     ? 'red'
-                    : 'purple'
+                    : 'blue'
                 }
                 rightIcon={<FaClock />}
               >

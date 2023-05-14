@@ -208,7 +208,7 @@ function FullPostModal({
                     Cancel
                   </Button>
                   <Button
-                    colorScheme="green"
+                    colorScheme="blue"
                     onClick={deleteCommentHandler}
                     ml={3}
                   >
@@ -329,11 +329,11 @@ function FullPostModal({
                             onChange={handleCommentChange}
                             placeholder="Add a comment..."
                             value={comment || ''}
-                            focusBorderColor="green.200"
+                            focusBorderColor="blue.200"
                           />
                           <Flex justify="flex-end">
                             <Button
-                              colorScheme="green"
+                              colorScheme="blue"
                               isDisabled={comment?.length === 0}
                               size="sm"
                               mt={2}

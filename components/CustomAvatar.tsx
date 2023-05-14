@@ -48,7 +48,7 @@ const CustomAvatar: React.FC<CustomAvatarProps> = ({
   const { chain } = useNetwork();
   //verify ownership of NFT image for profile picture
   const { data: useContractReadOwner } = useContractRead({
-    address: chainAddresses[chain?.id || 5001].ProfileImage,
+    address: chainAddresses[chain?.id].ProfileImage,
     abi: ProfileABI.output.abi,
     functionName: 'ownerOf',
     args: [user.nftId],
@@ -121,13 +121,13 @@ const CustomAvatar: React.FC<CustomAvatarProps> = ({
             isNftHolder ? borderWidthNFTImage : borderWidthRegularImage
           }
           borderStyle="solid"
-          borderColor={isNftHolder ? 'green.200' : 'white'}
+          borderColor={isNftHolder ? 'blue.200' : 'white'}
           borderRadius={isNftHolder ? 0 : 'full'}
           css={isNftHolder && hexagonStyle}
         ></Avatar>
       </Box>
       {isNftHolder && showBadge && (
-        <Badge colorScheme="green">NFT Profile</Badge>
+        <Badge colorScheme="blue">NFT Profile</Badge>
       )}
     </>
   );

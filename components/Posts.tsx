@@ -242,7 +242,7 @@ function Post({
                           Cancel
                         </Button>
                         <Button
-                          colorScheme="green"
+                          colorScheme="blue"
                           onClick={deleteHandler}
                           ml={3}
                         >
